@@ -8,9 +8,9 @@ datasource db {
 }
 
 model users {
-  id       String @id
-  name     String
-  email    String
+  id       String @id @default(uuid())
+  email    String @unique
   password String
+  name     String
   role     String
 }
