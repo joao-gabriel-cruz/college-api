@@ -8,6 +8,20 @@ import { UsersRepository } from "../users-repository";
 @Injectable()
 export class PrismaUserRepository implements UsersRepository {
   constructor(private prisma: PrismaService) {}
+
+  async update(id: string, updateUserDto: any): Promise<String> {
+    try {
+      this.prisma.users.update({
+        where: {
+          id,
+        },
+        data: updateUserDto,
+      });
+      return "User updated";
+    } catch (error) {
+      return "User not found";
+    }
+  }
   findOne(id: string): Promise<any> {
     return this.prisma.users.findUnique({
       where: {

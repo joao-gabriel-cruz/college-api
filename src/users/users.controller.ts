@@ -32,10 +32,10 @@ export class UsersController {
     return this.userRepository.findOne(id);
   }
 
-  // @Patch(":id")
-  // update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
-  //   return this.userRepository.update(+id, updateUserDto);
-  // }
+  @Patch(":id")
+  update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.userRepository.update(id, updateUserDto);
+  }
 
   // @Delete(":id")
   // remove(@Param("id") id: string) {
