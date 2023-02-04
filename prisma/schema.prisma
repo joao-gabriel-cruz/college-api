@@ -8,9 +8,38 @@ datasource db {
 }
 
 model users {
-  id       String @id @default(uuid())
-  email    String @unique
+  id       String    @id @default(uuid())
+  email    String    @unique
   password String
   name     String
   role     String
+  teacher  teacher[]
+  student  student[]
+}
+
+model teacher {
+  id_teacher String    @id @default(uuid())
+  user_id    String
+  register   String    @unique
+  course     String
+  user       users     @relation(fields: [user_id], references: [id])
+  subject    subject[]
+}
+
+model student {
+  id_student String    @id @default(uuid())
+  user_id    String
+  register   String    @unique
+  corse      String
+  user       users     @relation(fields: [user_id], references: [id])
+  subject    subject[]
+}
+
+model subject {
+  id         String  @id @default(uuid())
+  name       String
+  id_teacher String
+  id_student String
+  teacher    teacher @relation(fields: [id_teacher], references: [id_teacher])
+  student    student @relation(fields: [id_student], references: [id_student])
 }
