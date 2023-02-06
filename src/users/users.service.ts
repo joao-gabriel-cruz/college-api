@@ -7,24 +7,24 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(private userService: UsersRepository) {}
+  constructor(private userRepository: UsersRepository) {}
   create(createUserDto: CreateUserDto) {
-    this.userService.create(createUserDto);
+    this.userRepository.create(createUserDto);
   }
 
   findAll() {
-    return this.userService.findAll();
+    return this.userRepository.findAll();
   }
 
   findOne(id: string) {
-    return this.userService.findOne(id);
+    return this.userRepository.findOne(id);
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
-    return this.userService.update(id, updateUserDto);
+    return this.userRepository.update(id, updateUserDto);
   }
 
   remove(id: string) {
-    return this.userService.remove(id);
+    return this.userRepository.remove(id);
   }
 }
